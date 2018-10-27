@@ -11,7 +11,7 @@
         <ion-card-content>
             <ion-card-title>
                 {{card?.name}}
-                <p>{{card?.text}}</p>
+                <p [innerHTML]="card?.text"></p>
                 <p>{{card?.flavor}}</p>
             </ion-card-title>
 
@@ -39,10 +39,5 @@
 
         </ion-card-content>
     </ion-card>
-    <div>
-        <pre>
-            {{card | json}}
-        </pre>
-    </div>
 
 </ion-content>

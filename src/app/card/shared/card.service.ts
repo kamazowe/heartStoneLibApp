@@ -47,6 +47,10 @@ export class CardService {
     );
   }
 
+  replaceCardTextLine(text: string): string {
+    return text ? text.replace(new RegExp('\\\\n', 'g'), ', ') : 'No description';
+  }
+
   private responseToCardDecks(response: any): CardDeck[] {
     return this.ALLOWED_DECKS.map((deckName: string) => ({name: deckName, types: response[deckName]}));
   }

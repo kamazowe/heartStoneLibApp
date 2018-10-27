@@ -18,7 +18,7 @@
             </ion-card-header>
             <ion-card-content>
                 <div>
-                    {{card.text}}
+                    <p [innerHTML]="card?.text"></p>
                 </div>
                 <ion-button size="medium"
                             expand="full"

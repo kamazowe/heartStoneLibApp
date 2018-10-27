@@ -19,7 +19,9 @@ export class CardDetailPage {
 
   ionViewWillEnter(): void {
     this.cardId = this.activatedRoute.snapshot.paramMap.get('cardId');
-    this.cardService.getCardById(this.cardId).subscribe((card: Card) => {
+    this.cardService.getCardById(this.cardId).subscribe((responseCard: Card) => {
+      const card = responseCard;
+      card.text = this.cardService.replaceCardTextLine(card.text);
       this.card = card;
     });
   }
