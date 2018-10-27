@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/(card:card-deck)',
+    redirectTo: '/tabs/(card:card)',
     pathMatch: 'full',
   },
 ];
