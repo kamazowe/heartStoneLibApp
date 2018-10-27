@@ -3,6 +3,7 @@ import { CardService } from '../shared/card.service';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from '../shared/card.model';
 import { LoaderService } from '../../shared/loader.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-card-detail',
@@ -17,9 +18,9 @@ export class CardDetailPage {
 
   constructor(private activatedRoute: ActivatedRoute,
               private cardService: CardService,
-              private loaderService: LoaderService) {
+              private loaderService: LoaderService,
+              private toastService: ToastService) {
   }
-
 
   async ionViewWillEnter() {
     this.cardId = this.activatedRoute.snapshot.paramMap.get('cardId');
@@ -28,7 +29,11 @@ export class CardDetailPage {
       const card = responseCard;
       card.text = this.cardService.replaceCardTextLine(card.text);
       this.card = card;
+
       this.loaderService.dismissLoading();
+    }, () => {
+      this.loaderService.dismissLoading();
+      this.toastService.presentErrorToast('Uuup card could not be loaded , lets let try to refresh page');
     });
   }
 

@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HTMLIonOverlayElement } from '@ionic/angular/dist/types/utils/overlays-interface';
 import { LoadingController } from '@ionic/angular';
 
 @Injectable()
 export class LoaderService {
 
-  private loader: HTMLIonOverlayElement;
+  private loader: any;
 
   constructor(private loadingController: LoadingController) {
   }
 
-  public async presentLoading(): Promise<HTMLIonOverlayElement> {
+  public async presentLoading() {
     this.loader = await this.loadingController.create({
       content: 'Please wait ...',
       translucent: true,
