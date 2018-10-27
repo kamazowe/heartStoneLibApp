@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Card, CardDeck } from './card.model';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CardService {
@@ -35,6 +35,16 @@ export class CardService {
 
   getCardsByDeck(cardDeckGroup: string, cardDeck: string): Observable<Card[]> {
     return this.httpClient.get<any>(`${this.HS_API_URL}/cards/${cardDeckGroup}/${cardDeck}`, {headers: this.headers});
+  }
+
+  getCardById(cardId: string): Observable<Card> {
+    const headers = new HttpHeaders({
+      'X-Mashape-Key': this.API_KEY,
+      'Accept': 'application/json',
+    });
+    return this.httpClient.get<Card[]>(`${this.HS_API_URL}/cards/${cardId}`, {headers: headers}).pipe(
+        map(response => response[0]),
+    );
   }
 
   private responseToCardDecks(response: any): CardDeck[] {

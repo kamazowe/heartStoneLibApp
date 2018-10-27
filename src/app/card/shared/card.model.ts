@@ -20,4 +20,6 @@ export interface Card {
   faction?: string;
   playerClass?: string;
   locale?: string;
+  text?: string;
+  flavor?: string;
 }

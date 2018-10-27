@@ -21,7 +21,8 @@
                     {{card.text}}
                 </div>
                 <ion-button size="medium"
-                            expand="full">
+                            expand="full"
+                            [href]="'/tabs/(card:card/' + card.cardId + ')'">
                     See Detail
                 </ion-button>
             </ion-card-content>
