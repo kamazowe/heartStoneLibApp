@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardListComponent } from './components/card-list.component';
 import { CardListingPage } from './card-listing/card-listing.page';
 import { CardDetailPage } from './card-detail/card-detail.page';
+import { LoaderService } from '../shared/loader.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { CardDetailPage } from './card-detail/card-detail.page';
     RouterModule.forChild([{path: '', component: CardDeckPage}]),
   ],
   providers: [
+    LoaderService,
     CardService,
   ],
   declarations: [

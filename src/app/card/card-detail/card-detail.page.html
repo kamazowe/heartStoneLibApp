@@ -1,13 +1,17 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>card-detail</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
     <ion-card *ngIf="card?.cardId">
-        <img [src]="'../../../assets/images/DefaultCard.png'" (error)="updateImage($event)">
+        <img [src]="'../../../assets/images/DefaultCard.png'"
+             (error)="updateImage($event)">
         <ion-card-content>
             <ion-card-title>
                 {{card?.name}}

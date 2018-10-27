@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CardService } from '../shared/card.service';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from '../shared/card.model';
+import { LoaderService } from '../../shared/loader.service';
 
 @Component({
   selector: 'app-card-detail',
@@ -12,18 +13,27 @@ export class CardDetailPage {
 
   cardId: string;
   card: Card;
+  sub: any;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private cardService: CardService) {
+              private cardService: CardService,
+              private loaderService: LoaderService) {
   }
 
-  ionViewWillEnter(): void {
+
+  async ionViewWillEnter() {
     this.cardId = this.activatedRoute.snapshot.paramMap.get('cardId');
-    this.cardService.getCardById(this.cardId).subscribe((responseCard: Card) => {
+    this.loaderService.presentLoading();
+    this.sub = this.cardService.getCardById(this.cardId).subscribe((responseCard: Card) => {
       const card = responseCard;
       card.text = this.cardService.replaceCardTextLine(card.text);
       this.card = card;
+      this.loaderService.dismissLoading();
     });
+  }
+
+  private ionViewDidLeave() {
+    this.sub.unsubscribe();
   }
 
   updateImage(event: Event) {

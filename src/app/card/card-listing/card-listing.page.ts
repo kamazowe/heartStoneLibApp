@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../shared/card.service';
-import { Observable } from 'rxjs';
 import { Card } from '../shared/card.model';
+import { LoaderService } from '../../shared/loader.service';
 
 @Component({
   selector: 'app-card-listing',
@@ -13,15 +13,31 @@ export class CardListingPage {
 
   cardDeckGroup: string;
   cardDeck: string;
-  cards$: Observable<Card[]>;
+  cards: Card[] = [];
+  sub: any;
 
   constructor(private cardService: CardService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private loaderService: LoaderService) {
   }
 
-  ionViewWillEnter(): void {
+  async ionViewWillEnter() {
     this.cardDeckGroup = this.activatedRoute.snapshot.paramMap.get('cardDeckGroup');
     this.cardDeck = this.activatedRoute.snapshot.paramMap.get('cardDeck');
-    this.cards$ = this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck);
+    this.loaderService.presentLoading();
+
+    this.sub = this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck)
+        .subscribe((cards: Card[]) => {
+          this.cards = cards.map((card: Card) => {
+            card.text = this.cardService.replaceCardTextLine(card.text);
+
+            return card;
+          });
+          this.loaderService.dismissLoading();
+        });
+  }
+
+  private ionViewDidLeave() {
+    this.sub.unsubscribe();
   }
 }
