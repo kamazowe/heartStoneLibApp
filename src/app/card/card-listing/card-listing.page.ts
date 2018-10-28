@@ -4,6 +4,7 @@ import { CardService } from '../shared/card.service';
 import { Card } from '../shared/card.model';
 import { LoaderService } from '../../shared/loader.service';
 import { ToastService } from '../../shared/toast.service';
+import { Refresher } from '@ionic/angular';
 
 @Component({
   selector: 'app-card-listing',
@@ -23,9 +24,19 @@ export class CardListingPage {
               private toastService: ToastService) {
   }
 
-  async ionViewWillEnter() {
+
+  ionViewWillEnter() {
     this.cardDeckGroup = this.activatedRoute.snapshot.paramMap.get('cardDeckGroup');
     this.cardDeck = this.activatedRoute.snapshot.paramMap.get('cardDeck');
+    this.getCards();
+  }
+
+  doRefresh(event) {
+    this.getCards();
+    event.target.complete();
+  }
+
+  private getCards() {
     this.loaderService.presentLoading();
 
     this.sub = this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck)
