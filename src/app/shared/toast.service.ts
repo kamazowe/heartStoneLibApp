@@ -10,15 +10,15 @@ export class ToastService {
   }
 
   public async presentToast() {
-    const toast = await this.toastController.create({
+    this.toast = await this.toastController.create({
       message: ' Your settings have been saved.',
       duration: 2000,
     });
-    toast.present();
+    this.toast.present();
   }
 
   async presentErrorToast(message: string) {
-    const toast = await this.toastController.create({
+    this.toast = await this.toastController.create({
       message,
       position: 'top',
       closeButtonText: 'Done',
@@ -26,6 +26,6 @@ export class ToastService {
       cssClass: 'toast-error',
     });
 
-    toast.present();
+    this.toast.present();
   }
 }
