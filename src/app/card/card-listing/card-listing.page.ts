@@ -17,6 +17,7 @@ export class CardListingPage {
   cards: Card[] = [];
   copyOfCards: Card[] = [];
 
+  isLoading = false;
   sub: any;
 
   constructor(private cardService: CardService,
@@ -39,6 +40,7 @@ export class CardListingPage {
 
   hydrateCards(cards: Card[]) {
     this.cards = cards;
+    this.isLoading = false;
   }
 
   private getCards() {
@@ -62,5 +64,9 @@ export class CardListingPage {
 
   private ionViewDidLeave() {
     this.sub.unsubscribe();
+  }
+
+  handleSearch() {
+    this.isLoading = true;
   }
 }

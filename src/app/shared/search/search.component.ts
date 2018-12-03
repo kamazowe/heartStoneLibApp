@@ -11,6 +11,7 @@ export class SearchComponent {
 
   @Input() items: any[] = [];
   @Input() filteredProperty: string;
+  @Output() searchStarted = new EventEmitter();
 
   @Output() searchCompleted = new EventEmitter();
   sub: any;
@@ -18,7 +19,7 @@ export class SearchComponent {
   private searchSubject = new BehaviorSubject<string>('');
 
   handleSearch(event): void {
-
+  this.searchStarted.emit();
     const searchedText = event.target.value;
     if (!this.items) {
       return this.searchCompleted.emit([]);
