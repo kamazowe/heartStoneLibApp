@@ -4,7 +4,6 @@ import { CardService } from '../shared/card.service';
 import { Card } from '../shared/card.model';
 import { LoaderService } from '../../shared/loader.service';
 import { ToastService } from '../../shared/toast.service';
-import { Refresher } from '@ionic/angular';
 
 @Component({
   selector: 'app-card-listing',
@@ -16,6 +15,8 @@ export class CardListingPage {
   cardDeckGroup: string;
   cardDeck: string;
   cards: Card[] = [];
+  copyOfCards: Card[] = [];
+
   sub: any;
 
   constructor(private cardService: CardService,
@@ -36,6 +37,10 @@ export class CardListingPage {
     event.target.complete();
   }
 
+  hydrateCards(cards: Card[]) {
+    this.cards = cards;
+  }
+
   private getCards() {
     this.loaderService.presentLoading();
 
@@ -47,6 +52,7 @@ export class CardListingPage {
             return card;
           });
 
+          this.copyOfCards = Array.from(this.cards);
           this.loaderService.dismissLoading();
         }, () => {
           this.loaderService.dismissLoading();

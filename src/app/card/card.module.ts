@@ -12,6 +12,7 @@ import { CardDetailPage } from './card-detail/card-detail.page';
 import { LoaderService } from '../shared/loader.service';
 import { ToastService } from '../shared/toast.service';
 import { AlertService } from '../shared/alert.service';
+import { SearchComponent } from '../shared/search/search.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AlertService } from '../shared/alert.service';
     ToastService,
   ],
   declarations: [
+    SearchComponent,
     CardDeckPage,
     CardListingPage,
     CardListComponent,
