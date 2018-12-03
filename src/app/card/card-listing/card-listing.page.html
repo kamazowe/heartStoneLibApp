@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{cardDeckGroup}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <app-search (searchCompleted)="hydrateCards($event)"
+                [items]="copyOfCards"
+                [filteredProperty]="'name'">
+    </app-search>
+
+    <!-- fixme -->
+    <!--<ion-spinner></ion-spinner>-->
+
+    <ion-refresher slot="fixed"
+                   (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
+    <ion-list *ngIf="cards.length > 0">
+        <ion-card *ngFor="let card of cards">
+            <ion-card-header text-wrap>
+                <ion-card-subtitle>
+                    {{card.cardSet}}
+                </ion-card-subtitle>
+                <ion-card-title>
+                    {{card.name}}
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <div>
+                    <p [innerHTML]="card?.text"></p>
+                </div>
+                <ion-button size="medium"
+                            expand="full"
+                            [href]="'/tabs/(card:card/' + card.cardId + ')'">
+                    See Detail
+                </ion-button>
+            </ion-card-content>
+
+        </ion-card>
+    </ion-list>
+</ion-content>
