@@ -6,7 +6,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start:ionic": "ionic serve",
+    "build:www": "ng build",
+    "build:ionic": "ionic build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -28,6 +30,7 @@
     "@ionic-native/status-bar": "5.0.0-beta.14",
     "@ionic/angular": "^4.0.0-beta.0",
     "core-js": "^2.5.3",
+    "firebase-tools": "^6.1.1",
     "rxjs": "6.2.2",
     "zone.js": "^0.8.26"
   },
