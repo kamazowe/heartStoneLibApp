@@ -43,6 +43,11 @@ export class CardListingPage {
     this.isLoading = false;
   }
 
+  favoriteCard(card: Card): void {
+    card.favorite = !card.favorite;
+
+  }
+
   private getCards() {
     this.loaderService.presentLoading();
 

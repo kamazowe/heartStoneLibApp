@@ -25,8 +25,13 @@
 
     <ion-list *ngIf="cards.length > 0">
         <ion-card *ngFor="let card of cards">
+            <pre>{{card | json}}</pre>
             <ion-card-header text-wrap>
                 <ion-card-subtitle>
+                    <ion-icon (click)="favoriteCard(card)"
+                              [ngClass]="card.favorite ? 'favorite' : 'normal'"
+                              name="flame"
+                              class="like-icon"></ion-icon>
                     {{card.cardSet}}
                 </ion-card-subtitle>
                 <ion-card-title>

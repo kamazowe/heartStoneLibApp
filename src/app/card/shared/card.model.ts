@@ -9,6 +9,7 @@ export interface Card {
   img?: string;
   imgGold?: string;
   name?: string;
+  favorite: boolean;
 
   cost?: number;
   attack?: number;
