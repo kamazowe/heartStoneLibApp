@@ -22,11 +22,14 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-
     <ion-list *ngIf="cards.length > 0">
         <ion-card *ngFor="let card of cards">
             <ion-card-header text-wrap>
                 <ion-card-subtitle>
+                    <ion-icon (click)="toggleFavoriteCard(card)"
+                              [ngClass]="card.favorite ? 'favorite' : 'normal'"
+                              name="flame"
+                              class="like-icon"></ion-icon>
                     {{card.cardSet}}
                 </ion-card-subtitle>
                 <ion-card-title>

@@ -7,21 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  ionViewWillEnter(): void {
-    console.log('ionViewWillEnter');
-  }
 
-  ionViewDidEnter(): void {
-    console.log('ionViewDidEnter');
-  }
-
-
-  ionViewWillLeave(): void {
-    console.log('ionViewWillLeave');
-  }
-
-
-  ionViewDidLeave(): void {
-    console.log('ionViewDidLeave');
-  }
 }
