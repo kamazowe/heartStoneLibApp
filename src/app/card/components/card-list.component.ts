@@ -11,7 +11,4 @@ export class CardListComponent {
   @Input() listName: string;
   @Input() navigateTo: any;
 
-  ionViewDidEnter(){
-    console.log('cardListCOmponent');
-  }
 }

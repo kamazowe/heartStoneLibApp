@@ -56,9 +56,8 @@ export class CardListingPage {
   }
 
   private isCardFavorite(cardId: string): boolean {
-    // const card = this.favoriteCards[cardId];
-    // return card ? true : false;
-    return false;
+    const card = this.favoriteCards[cardId];
+    return card ? true : false;
   }
 
   private getCards() {
